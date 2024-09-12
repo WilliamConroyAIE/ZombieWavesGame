@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -12,7 +13,7 @@ public class Weapon : MonoBehaviour
     public bool isShooting, readyToShoot;
     private bool allowReset = true;
     public int bulletsPerBurst = 3, burstBulletsLeft;
-
+    public GameObject muzzleFlash;
     public enum ShootingMode
     {
         Single,
@@ -58,12 +59,12 @@ public class Weapon : MonoBehaviour
     private void FireWeapon()
     {
         readyToShoot = false;
-
+        muzzleFlash.GetComponent<ParticleSystem>().Play();
         Vector3 shootingDirection = CalculateDirectionAndSpread().normalized;
 
         GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
         bullet.transform.forward = shootingDirection;
-        bullet.GetComponent<Rigidbody>().AddForce(bulletSpawn.forward.normalized * bulletVelocity, ForceMode.Impulse);
+        bullet.GetComponent<Rigidbody>().AddForce(bulletSpawn.forward.normalized * bulletVelocity / 4, ForceMode.Impulse);
         StartCoroutine(DestroyBulletAfterTime(bullet, bulletPrefabLifeTime));
 
         if (allowReset)
@@ -92,6 +93,13 @@ public class Weapon : MonoBehaviour
         {
             targetPoint = ray.GetPoint(100);
         }
+
+        Vector3 direction = targetPoint - bulletSpawn.position;
+
+        float x = UnityEngine.Random.Range(-spreadIntensity, spreadIntensity);
+        float y = UnityEngine.Random.Range(-spreadIntensity, spreadIntensity);
+
+        return direction + new Vector3(x, y, 0);
     }
 
     private IEnumerator DestroyBulletAfterTime(GameObject bullet, float delay)
