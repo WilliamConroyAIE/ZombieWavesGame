@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    public Animator animator;
+
     [Header("Shooting")]
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
@@ -31,10 +33,7 @@ public class Weapon : MonoBehaviour
     {
        readyToShoot = true;
        burstBulletsLeft = bulletsPerBurst; 
-    }
-    private void Start()
-    {
-        
+       animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -59,6 +58,7 @@ public class Weapon : MonoBehaviour
     private void FireWeapon()
     {
         readyToShoot = false;
+        animator.SetTrigger("Recoil");
         muzzleFlash.GetComponent<ParticleSystem>().Play();
         Vector3 shootingDirection = CalculateDirectionAndSpread().normalized;
 
