@@ -42,6 +42,11 @@ public class Weapon : MonoBehaviour
     [Header("Additional")]
     public Camera playerCamera;
 
+    public Vector3 spawnPosition;
+    public Vector3 spawnRotation;
+    public Vector3 ADSPosition;
+    public Vector3 ADSRotation;
+
     private void Awake()
     {
        readyToShoot = true;
@@ -52,6 +57,8 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
+        GetComponent<Outline>().enabled = false;
+
         if (isActiveWeapon)
         {
             if (bulletsLeft == 0 && !isReloading)
@@ -80,11 +87,6 @@ public class Weapon : MonoBehaviour
             if (readyToShoot && !isShooting && !isReloading && bulletsLeft <= 0)
             {
                 Reload();
-            }
-
-            if (AmmunitionManager.Instance.ammunitionDisplay != null)
-            {
-                AmmunitionManager.Instance.ammunitionDisplay.text = $"{bulletsLeft/bulletsPerBurst} / {magazineSize/bulletsPerBurst}";
             }
         }
     }

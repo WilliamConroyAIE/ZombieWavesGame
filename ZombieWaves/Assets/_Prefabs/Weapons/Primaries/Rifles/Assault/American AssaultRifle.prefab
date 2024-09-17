@@ -232,6 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 563cec3a8bf87444d92a1c198d841d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActiveWeapon: 0
   animator: {fileID: 4787629341756711}
   bulletPrefab: {fileID: 5897092442045150004, guid: a2262ca845b88944490e85bc15eeb1c8, type: 3}
   bulletSpawn: {fileID: 5647065954244706133}
@@ -251,6 +252,10 @@ MonoBehaviour:
   bulletsLeft: 0
   isReloading: 0
   playerCamera: {fileID: 0}
+  spawnPosition: {x: 0.2857742, y: -0.2299999, z: 0.634971}
+  spawnRotation: {x: 0, y: -1.5, z: 0}
+  ADSPosition: {x: 0, y: 0, z: 0}
+  ADSRotation: {x: 0, y: 0, z: 0}
 --- !u!95 &4787629341756711
 Animator:
   serializedVersion: 5

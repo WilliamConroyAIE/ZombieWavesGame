@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 7362395471534325550}
   - component: {fileID: 7362395471534325549}
   - component: {fileID: 4053095694078214678}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: American Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,6 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 563cec3a8bf87444d92a1c198d841d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActiveWeapon: 0
   animator: {fileID: 7362395471534325550}
   bulletPrefab: {fileID: 5897092442045150004, guid: a2262ca845b88944490e85bc15eeb1c8, type: 3}
   bulletSpawn: {fileID: 1317811948573857728}
@@ -136,6 +137,10 @@ MonoBehaviour:
   bulletsLeft: 0
   isReloading: 0
   playerCamera: {fileID: 0}
+  spawnPosition: {x: 0.2840004, y: -0.2299999, z: 0.6349996}
+  spawnRotation: {x: 0, y: -1.5, z: 0}
+  ADSPosition: {x: 0, y: 0, z: 0}
+  ADSRotation: {x: 0, y: 0, z: 0}
 --- !u!114 &4053095694078214678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,7 +170,7 @@ GameObject:
   - component: {fileID: 6323563755948839508}
   - component: {fileID: 6315733063320398584}
   - component: {fileID: 6306273894166646530}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Bolt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -249,7 +254,7 @@ GameObject:
   - component: {fileID: 6323285858377660706}
   - component: {fileID: 6315695048136112462}
   - component: {fileID: 6306137675940818814}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Sights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -332,7 +337,7 @@ GameObject:
   - component: {fileID: 6323392841601690386}
   - component: {fileID: 6315591313145006148}
   - component: {fileID: 6306265528365098994}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Hammer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -415,7 +420,7 @@ GameObject:
   - component: {fileID: 6331620319247238666}
   - component: {fileID: 6316208072786274140}
   - component: {fileID: 6305753565382929288}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -499,7 +504,7 @@ GameObject:
   - component: {fileID: 6331596148284387734}
   - component: {fileID: 6315844649243978132}
   - component: {fileID: 6306290183902000972}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Filler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
