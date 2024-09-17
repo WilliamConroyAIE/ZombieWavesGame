@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using TMPro;
 
 public class Weapon : MonoBehaviour
 {
+    public bool isActiveWeapon;
     public Animator animator;
 
     [Header("Shooting")]
@@ -16,6 +18,7 @@ public class Weapon : MonoBehaviour
     private bool allowReset = true;
     public int bulletsPerBurst = 3, burstBulletsLeft;
     public GameObject muzzleFlash;
+
     public enum ShootingMode
     {
         Single,
@@ -24,7 +27,17 @@ public class Weapon : MonoBehaviour
     }
     public ShootingMode currentShootingMode;
 
-    //[Header("Reloading")]
+    public enum WeaponModel
+    {
+        M16A4, 
+        M1911
+    }
+    public WeaponModel thisWeaponModel;
+
+    [Header("Reloading")]
+    public float reloadTime;
+    public int magazineSize, bulletsLeft;
+    public bool isReloading;
 
     [Header("Additional")]
     public Camera playerCamera;
@@ -34,34 +47,57 @@ public class Weapon : MonoBehaviour
        readyToShoot = true;
        burstBulletsLeft = bulletsPerBurst; 
        animator = GetComponent<Animator>();
+       bulletsLeft = magazineSize;
     }
 
-    // Update is called once per frame
     private void Update()
     {
-        if (currentShootingMode == ShootingMode.Auto)
+        if (isActiveWeapon)
         {
-            isShooting = Input.GetKey(KeyCode.Mouse0);
-        }
-        else if (currentShootingMode == ShootingMode.Single || currentShootingMode == ShootingMode.Burst)
-        {
-            isShooting = Input.GetKeyDown(KeyCode.Mouse0);
-        }
+            if (bulletsLeft == 0 && !isReloading)
+            {
+                SoundManager.Instance.emptyChannel.Play();
+            }
 
-        if (readyToShoot && isShooting)
-        {
-            burstBulletsLeft = bulletsPerBurst;
-            FireWeapon();
+            if (currentShootingMode == ShootingMode.Auto)
+            {
+                isShooting = Input.GetKey(KeyCode.Mouse0);
+            }
+            else if (currentShootingMode == ShootingMode.Single || currentShootingMode == ShootingMode.Burst)
+            {
+                isShooting = Input.GetKeyDown(KeyCode.Mouse0);
+            }
+
+            if (readyToShoot && isShooting && bulletsLeft > 0)
+            {
+                burstBulletsLeft = bulletsPerBurst;
+                FireWeapon();
+            }
+
+            if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !isReloading)
+                Reload();
+            
+            if (readyToShoot && !isShooting && !isReloading && bulletsLeft <= 0)
+            {
+                Reload();
+            }
+
+            if (AmmunitionManager.Instance.ammunitionDisplay != null)
+            {
+                AmmunitionManager.Instance.ammunitionDisplay.text = $"{bulletsLeft/bulletsPerBurst} / {magazineSize/bulletsPerBurst}";
+            }
         }
     }
 
     private void FireWeapon()
     {
+        bulletsLeft--;
         readyToShoot = false;
         animator.SetTrigger("Recoil");
+        
         muzzleFlash.GetComponent<ParticleSystem>().Play();
         Vector3 shootingDirection = CalculateDirectionAndSpread().normalized;
-
+        SoundManager.Instance.PlayShootingSound(thisWeaponModel);
         GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
         bullet.transform.forward = shootingDirection;
         bullet.GetComponent<Rigidbody>().AddForce(bulletSpawn.forward.normalized * bulletVelocity / 4, ForceMode.Impulse);
@@ -79,6 +115,21 @@ public class Weapon : MonoBehaviour
             Invoke("FireWeapon", shootingDelay);
         }
     }
+
+    private void Reload()
+    {
+        isReloading = true;
+        animator.SetTrigger("Reload");
+        SoundManager.Instance.PlayReloadingSound();
+        Invoke("ReloadCompleted", reloadTime);
+    }
+
+    private void ReloadCompleted()
+    {
+        bulletsLeft = magazineSize;
+        isReloading = false;
+    }
+
     private Vector3 CalculateDirectionAndSpread()
     {
         Ray ray= playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));

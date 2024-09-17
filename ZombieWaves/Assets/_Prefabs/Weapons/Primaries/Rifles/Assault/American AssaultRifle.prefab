@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5643355929249587565}
   - component: {fileID: 5632092421551443487}
   - component: {fileID: 5623660218711666299}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Magazine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 5643172656848469663}
   - component: {fileID: 5631268957380582377}
   - component: {fileID: 5624907273615616691}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,8 @@ GameObject:
   - component: {fileID: 9169883886254813066}
   - component: {fileID: 5647065954123677800}
   - component: {fileID: 4787629341756711}
-  m_Layer: 0
+  - component: {fileID: 3029106425243653923}
+  m_Layer: 14
   m_Name: American AssaultRifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,6 +245,11 @@ MonoBehaviour:
   burstBulletsLeft: 0
   muzzleFlash: {fileID: 5646921372217329150}
   currentShootingMode: 1
+  thisWeaponModel: 0
+  reloadTime: 0.8
+  magazineSize: 30
+  bulletsLeft: 0
+  isReloading: 0
   playerCamera: {fileID: 0}
 --- !u!95 &4787629341756711
 Animator:
@@ -266,6 +272,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3029106425243653923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5645898107472900141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &5645957237003779563
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,7 +301,7 @@ GameObject:
   - component: {fileID: 5642597511943615005}
   - component: {fileID: 5631306963111107053}
   - component: {fileID: 5624950628795925457}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: RearSight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -360,7 +384,7 @@ GameObject:
   - component: {fileID: 5643535011862529411}
   - component: {fileID: 5631761629987714037}
   - component: {fileID: 5623506147439375987}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Bolt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -443,7 +467,7 @@ GameObject:
   - component: {fileID: 5642838296459401845}
   - component: {fileID: 5631863390863478485}
   - component: {fileID: 5623929783572599823}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: FrontSight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -524,7 +548,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5647065954244706133}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: BulletSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -557,6 +581,10 @@ PrefabInstance:
     - target: {fileID: 1000010254994808, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
       propertyPath: m_Name
       value: MuzzleFlashEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010254994808, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 4000011227296186, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
       propertyPath: m_RootOrder
