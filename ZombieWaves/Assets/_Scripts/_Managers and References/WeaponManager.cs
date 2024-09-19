@@ -24,6 +24,8 @@ public class WeaponManager : MonoBehaviour
 
     public int lethalsCount = 0;
 
+    public Throwable.ThrowableType equippedType;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -86,6 +88,7 @@ public class WeaponManager : MonoBehaviour
             forceMultiplier = 0;
         }
     }
+
     public void SwitchActiveSlot(int slotNumber)
     {
         if (activeWeaponSlot.transform.childCount > 0)
@@ -151,9 +154,9 @@ public class WeaponManager : MonoBehaviour
         HUDManager.Instance.UpdateThrowables(Throwable.ThrowableType.FragmentationGrenade);
     }
 
-    private GameObject GetThrowablePrefab(Throwable.ThrowableType throwableType)
+    private GameObject GetThrowablePrefab()
     {
-        switch (throwableType)
+        switch (equippedType)
         {
             case Throwable.ThrowableType.FragmentationGrenade:
                 return fGrenadePrefab;
