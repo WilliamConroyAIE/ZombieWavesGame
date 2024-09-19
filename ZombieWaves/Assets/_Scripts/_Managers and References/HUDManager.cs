@@ -38,6 +38,9 @@ public class HUDManager : MonoBehaviour
     public TextMeshProUGUI tacticalAmountUI;
 
     public Sprite emptySlot;
+    public Sprite greySlot;
+
+    public GameObject crosshair;
 
     private void Update()
     {
@@ -47,7 +50,7 @@ public class HUDManager : MonoBehaviour
         if (activeWeapon)
         {
             magazineAmmuntionUI.text = $"{activeWeapon.bulletsLeft / activeWeapon.bulletsPerBurst}";
-            totalAmmuntionUI.text = $"{activeWeapon.magazineSize / activeWeapon.bulletsPerBurst}";
+            totalAmmuntionUI.text = $"{WeaponManager.Instance.CheckAmmunitionLeftFor(activeWeapon.thisWeaponModel)}";
 
             Weapon.WeaponModel model = activeWeapon.thisWeaponModel;
             ammuntionTypeUI.sprite = GetAmmunitionSprite(model);
@@ -67,6 +70,11 @@ public class HUDManager : MonoBehaviour
             ammuntionTypeUI.sprite = emptySlot;
             activeWeaponUI.sprite = emptySlot;
             unActiveWeaponUI.sprite = emptySlot;
+        }
+
+        if (WeaponManager.Instance.fGrenades <= 0)
+        {
+            lethalUI.sprite = greySlot;
         }
     }
 
@@ -105,6 +113,19 @@ public class HUDManager : MonoBehaviour
                 return Instantiate(Resources.Load<GameObject>("Rifle5.56_Bullet")).GetComponent<SpriteRenderer>().sprite;
             default:
                 return null;
+        }
+    }
+
+    internal void UpdateThrowables(Throwable.ThrowableType throwableType)
+    {
+        lethalAmountUI.text = $"{WeaponManager.Instance.lethalsCount}";
+
+        switch (throwableType)
+        {
+            case Throwable.ThrowableType.FragmentationGrenade:
+                lethalAmountUI.text = $"{WeaponManager.Instance.fGrenades}";
+                lethalUI.sprite = Resources.Load<GameObject>("FragmentationGrenade_Throwable").GetComponent<SpriteRenderer>().sprite;
+                break;
         }
     }
 }

@@ -11,6 +11,8 @@ public class SoundManager : MonoBehaviour
     public AudioSource reloadingChannel;
     public AudioSource emptyChannel;
 
+    public AudioSource throwablesChannel;
+
     [Header("Silenced AudioClips")]
     public AudioClip shootingSoundSilencedAR;
     public AudioClip shootingSoundSilencedSMG;
@@ -29,6 +31,7 @@ public class SoundManager : MonoBehaviour
     [Header("MiscellaneousWeaponSoundClips")]
     public AudioClip reloadSoundClip;
     public AudioClip emptySoundClip;
+    public AudioClip fragmentationGrenadeSoundClip;
 
     private void Awake()
     {

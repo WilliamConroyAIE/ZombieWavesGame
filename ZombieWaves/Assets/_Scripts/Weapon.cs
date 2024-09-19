@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using TMPro;
+using static HUDManager;
+using static WeaponManager;
 
 public class Weapon : MonoBehaviour
 {
@@ -12,7 +14,8 @@ public class Weapon : MonoBehaviour
     [Header("Shooting")]
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
-    public float bulletVelocity = 30f, bulletPrefabLifeTime = 3f, shootingDelay = 2f, spreadIntensity;
+    public float bulletVelocity = 30f, bulletPrefabLifeTime = 3f, shootingDelay = 2f; 
+    public float spreadIntensity, hipSpreadIntensity, adsSpreadIntensity;
 
     public bool isShooting, readyToShoot;
     private bool allowReset = true;
@@ -47,6 +50,8 @@ public class Weapon : MonoBehaviour
     public Vector3 ADSPosition;
     public Vector3 ADSRotation;
 
+    bool isADS;
+
     private void Awake()
     {
        readyToShoot = true;
@@ -57,10 +62,19 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
-        GetComponent<Outline>().enabled = false;
-
         if (isActiveWeapon)
         {
+            GetComponent<Outline>().enabled = false;
+
+            if (Input.GetMouseButton(1))
+            {
+                enterADS();
+            }
+            else
+            {
+                exitADS();
+            }
+            
             if (bulletsLeft == 0 && !isReloading)
             {
                 SoundManager.Instance.emptyChannel.Play();
@@ -81,7 +95,7 @@ public class Weapon : MonoBehaviour
                 FireWeapon();
             }
 
-            if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !isReloading)
+            if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !isReloading && WeaponManager.Instance.CheckAmmunitionLeftFor(thisWeaponModel) > 0)
                 Reload();
             
             if (readyToShoot && !isShooting && !isReloading && bulletsLeft <= 0)
@@ -128,7 +142,16 @@ public class Weapon : MonoBehaviour
 
     private void ReloadCompleted()
     {
-        bulletsLeft = magazineSize;
+        if (WeaponManager.Instance.CheckAmmunitionLeftFor(thisWeaponModel) > magazineSize)
+        {
+            bulletsLeft = magazineSize;
+            WeaponManager.Instance.DecreaseTotalAmmunition(bulletsLeft, thisWeaponModel);
+        }
+        else
+        {
+            bulletsLeft = WeaponManager.Instance.CheckAmmunitionLeftFor(thisWeaponModel);
+            WeaponManager.Instance.DecreaseTotalAmmunition(bulletsLeft, thisWeaponModel);
+        }
         isReloading = false;
     }
 
@@ -166,4 +189,21 @@ public class Weapon : MonoBehaviour
         readyToShoot = true;
         allowReset = true;
     }
+
+    private void enterADS()
+    {
+        animator.SetBool("isADS", true);
+        isADS = false;
+        HUDManager.Instance.crosshair.SetActive(false);
+        spreadIntensity = adsSpreadIntensity;
+    }
+
+    private void exitADS()
+    {
+        animator.SetBool("isADS", false);
+        isADS = false;
+        HUDManager.Instance.crosshair.SetActive(true);
+        spreadIntensity = hipSpreadIntensity;
+    }
+
 }

@@ -124,7 +124,9 @@ MonoBehaviour:
   bulletVelocity: 30
   bulletPrefabLifeTime: 3
   shootingDelay: 0.3
-  spreadIntensity: 0.45
+  spreadIntensity: 0
+  hipSpreadIntensity: 0.45
+  adsSpreadIntensity: 0
   isShooting: 0
   readyToShoot: 0
   bulletsPerBurst: 1
@@ -139,7 +141,7 @@ MonoBehaviour:
   playerCamera: {fileID: 0}
   spawnPosition: {x: 0.2840004, y: -0.2299999, z: 0.6349996}
   spawnRotation: {x: 0, y: -1.5, z: 0}
-  ADSPosition: {x: 0, y: 0, z: 0}
+  ADSPosition: {x: 0, y: -0.07, z: 0.75}
   ADSRotation: {x: 0, y: 0, z: 0}
 --- !u!114 &4053095694078214678
 MonoBehaviour:
