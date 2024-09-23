@@ -3,7 +3,19 @@ guid: dc341ea8ed998dc4bae033327fa8f896
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - magazineAmmuntionUI: {instanceID: 0}
+  - totalAmmuntionUI: {instanceID: 0}
+  - ammuntionTypeUI: {instanceID: 0}
+  - activeWeaponUI: {instanceID: 0}
+  - unActiveWeaponUI: {instanceID: 0}
+  - lethalUI: {instanceID: 0}
+  - lethalAmountUI: {instanceID: 0}
+  - tacticalUI: {instanceID: 0}
+  - tacticalAmountUI: {instanceID: 0}
+  - emptySlot: {fileID: 21300000, guid: 0a54a229e3a3d274cadea58b967b5d62, type: 3}
+  - greySlot: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  - crosshair: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -12,4 +12,9 @@ public class AmmunitionBox : MonoBehaviour
         secondaryAmmunition
         
     }
+
+    private void Start()
+    {
+        GetComponent<Outline>().enabled = false;
+    }
 }

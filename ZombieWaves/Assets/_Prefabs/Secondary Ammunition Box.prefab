@@ -176,7 +176,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6447919450106770051}
   - component: {fileID: 7259112370184755170}
-  - component: {fileID: 1056886887279233425}
+  - component: {fileID: 737886381}
+  - component: {fileID: 8033654374931332259}
   m_Layer: 0
   m_Name: Secondary Ammunition Box
   m_TagString: Untagged
@@ -191,7 +192,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8007617063988543632}
-  m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.001, y: 0.001, z: 0.001}
   m_ConstrainProportionsScale: 0
@@ -213,9 +214,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d97971148f460e64b96b781c6e740070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammunitionAmount: 200
+  ammunitionAmount: 28
   ammunitionType: 1
---- !u!65 &1056886887279233425
+--- !u!114 &737886381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8007617063988543632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!65 &8033654374931332259
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -226,5 +245,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1300, y: 550, z: 700}
+  m_Center: {x: 0, y: 0, z: -20}

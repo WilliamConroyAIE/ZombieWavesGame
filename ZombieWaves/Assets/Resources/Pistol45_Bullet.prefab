@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6398635058278182787}
   - component: {fileID: 4960474877200594346}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Pistol45_Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

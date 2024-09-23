@@ -1,4 +1,4 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +9,6 @@ public class InteractionManager : MonoBehaviour
     public Weapon hoveredWeapon = null;
     public AmmunitionBox hoveredAmmunitionBox = null;
     public Throwable hoveredThrowable = null;
-    public Camera playerCamera;
 
     private void Awake()
     {
@@ -25,7 +24,7 @@ public class InteractionManager : MonoBehaviour
 
     private void Update()
     {
-        Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit))
@@ -93,4 +92,3 @@ public class InteractionManager : MonoBehaviour
     }
 
 }
-*/

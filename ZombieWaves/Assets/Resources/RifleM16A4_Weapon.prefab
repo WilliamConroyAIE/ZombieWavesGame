@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6560754238985452956}
   - component: {fileID: 4396855151028365444}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: RifleM16A4_Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

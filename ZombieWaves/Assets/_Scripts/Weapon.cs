@@ -43,7 +43,6 @@ public class Weapon : MonoBehaviour
     public bool isReloading;
 
     [Header("Additional")]
-    public Camera playerCamera;
 
     public Vector3 spawnPosition;
     public Vector3 spawnRotation;
@@ -58,6 +57,7 @@ public class Weapon : MonoBehaviour
        burstBulletsLeft = bulletsPerBurst; 
        animator = GetComponent<Animator>();
        bulletsLeft = magazineSize;
+       GetComponent<Outline>().enabled = false;
     }
 
     private void Update()
@@ -157,7 +157,7 @@ public class Weapon : MonoBehaviour
 
     private Vector3 CalculateDirectionAndSpread()
     {
-        Ray ray= playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+        Ray ray= Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         RaycastHit hit;
 
         Vector3 targetPoint;
@@ -196,6 +196,7 @@ public class Weapon : MonoBehaviour
         isADS = false;
         HUDManager.Instance.crosshair.SetActive(false);
         spreadIntensity = adsSpreadIntensity;
+        Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 40.0f, 3.5f * Time.deltaTime);
     }
 
     private void exitADS()
@@ -204,6 +205,8 @@ public class Weapon : MonoBehaviour
         isADS = false;
         HUDManager.Instance.crosshair.SetActive(true);
         spreadIntensity = hipSpreadIntensity;
+        Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 60.0f, 3.5f * Time.deltaTime);
+
     }
 
 }

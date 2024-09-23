@@ -13,30 +13,42 @@ public class Throwable : MonoBehaviour
     bool hasExploded = false;
     public bool hasBeenThrown = false;
 
+    public bool isImpactThrowable;
+
     public enum ThrowableType
     {
         None,
-        FragmentationGrenade/*/,
-        ImpactGrenade,
-        SmokeGrenade,
-        Flashbang/*/
+        FragmentationGrenade,
+        //Pipebomb,
+        //MolotovCocktail,
+        //Decoy,
+        SmokeGrenade
+        //Flashbang
     }
     public ThrowableType throwableType;
 
     private void Start()
     {
         countdown = delay;
+        GetComponent<Outline>().enabled = false;
     }
 
     private void Update()
     {
         if (hasBeenThrown)
         {
-            countdown -= Time.deltaTime;
-            if (countdown <= 0f && !hasExploded)
+            if (isImpactThrowable) 
+            {   
+                //Explode on Impact
+            }
+            else
             {
-                Explode();
-                hasExploded = true;
+                countdown -= Time.deltaTime;
+                if (countdown <= 0f && !hasExploded)
+                {
+                    Explode();
+                    hasExploded = true;
+                }
             }
         }
     }
@@ -55,9 +67,27 @@ public class Throwable : MonoBehaviour
             case ThrowableType.FragmentationGrenade:
                 GrenadeExplosionEffect();
                 break;
+            /*/case ThrowableType.Pipebomb:
+                PipebombEffect();
+                break;
+            case ThrowableType.MolotovCocktail:
+                FireSpreadEffect();
+                break;
+            case ThrowableType.Decoy:
+                break; /*/
+            case ThrowableType.SmokeGrenade:
+                SmokeBombEffect();
+                break;
+            //case ThrowableType.Flashbang:
+                //FlashBangEffect();
+                //break;
+
+            default:
+                break;
         }
     }
 
+#region LethalEffects
     private void GrenadeExplosionEffect()
     {
         GameObject explosionEffect = GlobalReference.Instance.grenadeExplosionEffect;
@@ -75,4 +105,63 @@ public class Throwable : MonoBehaviour
             }
         }
     }
+
+    /*
+    private void PipebombEffect()
+    {
+        GameObject explosionEffect = GlobalReference.Instance.PBEffect;
+        Instantiate(explosionEffect, transform.position, transform.rotation);
+
+        SoundManager.Instance.throwablesChannel.PlayOneShot(SoundManager.Instance.fragmentationGrenadeSoundClip);
+
+        Collider[] colliders = Physics.OverlapSphere(transform.position, damageRadius);
+        foreach (Collider objectInRange in colliders)
+        {
+            Rigidbody rb = objectInRange.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.AddExplosionForce(explosionForce, transform.position, damageRadius);
+            }
+        }
+    }
+
+    private void FireSpreadEffect()
+    {
+        GameObject explosionEffect = GlobalReference.Instance.MCEffect;
+        Instantiate(explosionEffect, transform.position, transform.rotation);
+
+        SoundManager.Instance.throwablesChannel.PlayOneShot(SoundManager.Instance.fragmentationGrenadeSoundClip);
+
+        Collider[] colliders = Physics.OverlapSphere(transform.position, damageRadius);
+        foreach (Collider objectInRange in colliders)
+        {
+            Rigidbody rb = objectInRange.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.AddExplosionForce(explosionForce, transform.position, damageRadius);
+            }
+        }
+    }
+    */
+#endregion
+
+#region TacticalEffects
+    private void SmokeBombEffect()
+    {
+        GameObject explosionEffect = GlobalReference.Instance.SmokeExplosionEffect;
+        Instantiate(explosionEffect, transform.position, transform.rotation);
+
+        SoundManager.Instance.throwablesChannel.PlayOneShot(SoundManager.Instance.fragmentationGrenadeSoundClip);
+    }
+
+    /*
+    private void FlashBangEffect()
+    {
+        GameObject explosionEffect = GlobalReference.Instance.BlindnessEffect;
+        Instantiate(explosionEffect, transform.position, transform.rotation);
+
+        SoundManager.Instance.throwablesChannel.PlayOneShot(SoundManager.Instance.fragmentationGrenadeSoundClip);
+    }
+    */
+#endregion
 }

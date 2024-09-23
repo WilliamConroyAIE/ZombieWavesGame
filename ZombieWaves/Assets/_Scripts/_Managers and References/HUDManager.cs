@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
+using static WeaponManager;
+using static InteractionManager;
 
 public class HUDManager : MonoBehaviour
 {
@@ -22,6 +24,7 @@ public class HUDManager : MonoBehaviour
     }
     #endregion
 
+    #region Values
     [Header("Ammunition")]
     public TextMeshProUGUI magazineAmmuntionUI;
     public TextMeshProUGUI totalAmmuntionUI;
@@ -41,7 +44,9 @@ public class HUDManager : MonoBehaviour
     public Sprite greySlot;
 
     public GameObject crosshair;
+    #endregion
 
+    #region Weapon&AmmunitionSpriteUpdates
     private void Update()
     {
         Weapon activeWeapon = WeaponManager.Instance.activeWeaponSlot.GetComponentInChildren<Weapon>();
@@ -72,9 +77,13 @@ public class HUDManager : MonoBehaviour
             unActiveWeaponUI.sprite = emptySlot;
         }
 
-        if (WeaponManager.Instance.fGrenades <= 0)
+        if (WeaponManager.Instance.lethalsCount <= 0)
         {
             lethalUI.sprite = greySlot;
+        }
+        if (WeaponManager.Instance.tacticalsCount <= 0)
+        {
+            tacticalUI.sprite = greySlot;
         }
     }
 
@@ -95,9 +104,9 @@ public class HUDManager : MonoBehaviour
         switch (model)
         {
             case Weapon.WeaponModel.M1911:
-                return Instantiate(Resources.Load<GameObject>("Pistol1911_Weapon")).GetComponent<SpriteRenderer>().sprite;
+                return Resources.Load<GameObject>("Pistol1911_Weapon").GetComponent<SpriteRenderer>().sprite;
             case Weapon.WeaponModel.M16A4:
-                return Instantiate(Resources.Load<GameObject>("RifleM16A4_Weapon")).GetComponent<SpriteRenderer>().sprite;
+                return Resources.Load<GameObject>("RifleM16A4_Weapon").GetComponent<SpriteRenderer>().sprite;
             default:
                 return null;
         }
@@ -108,24 +117,61 @@ public class HUDManager : MonoBehaviour
         switch (model)
         {
             case Weapon.WeaponModel.M1911:
-                return Instantiate(Resources.Load<GameObject>("Pistol45_Bullet")).GetComponent<SpriteRenderer>().sprite;
+                return Resources.Load<GameObject>("Pistol45_Bullet").GetComponent<SpriteRenderer>().sprite;
             case Weapon.WeaponModel.M16A4:
-                return Instantiate(Resources.Load<GameObject>("Rifle5.56_Bullet")).GetComponent<SpriteRenderer>().sprite;
+                return Resources.Load<GameObject>("Rifle5.56_Bullet").GetComponent<SpriteRenderer>().sprite;
             default:
                 return null;
         }
     }
-
-    internal void UpdateThrowables(Throwable.ThrowableType throwableType)
+    #endregion
+    #region Throwables
+    internal void UpdateLethalThrowables(Throwable.ThrowableType throwableType)
     {
         lethalAmountUI.text = $"{WeaponManager.Instance.lethalsCount}";
+        lethalUI.sprite = GetLethalSprite(throwableType);
+    }
 
+    private Sprite GetLethalSprite(Throwable.ThrowableType throwableType)
+    {
         switch (throwableType)
         {
             case Throwable.ThrowableType.FragmentationGrenade:
-                lethalAmountUI.text = $"{WeaponManager.Instance.fGrenades}";
-                lethalUI.sprite = Resources.Load<GameObject>("FragmentationGrenade_Throwable").GetComponent<SpriteRenderer>().sprite;
+                return Resources.Load<GameObject>("FragmentationGrenade_Throwable").GetComponent<SpriteRenderer>().sprite;
+                /*
+            case Throwable.ThrowableType.Pipebomb:
+                Resources.Load<GameObject>("Pipebomb_Throwable").GetComponent<SpriteRenderer>().sprite;
                 break;
+            case Throwable.ThrowableType.MolotovCocktail:
+                Resources.Load<GameObject>("MolotovCocktail_Throwable").GetComponent<SpriteRenderer>().sprite;
+                break; */
+            default:
+                return null;
         }
     }
+    
+    internal void UpdateTacticalThrowables(Throwable.ThrowableType throwableType)
+    {
+        tacticalAmountUI.text = $"{WeaponManager.Instance.tacticalsCount}";
+        tacticalUI.sprite = GetTacticalSprite(throwableType);
+    }
+
+    private Sprite GetTacticalSprite(Throwable.ThrowableType throwableType)
+    {
+        switch (throwableType)
+        {
+            case Throwable.ThrowableType.SmokeGrenade:
+                return Resources.Load<GameObject>("SmokeGrenade_Throwable").GetComponent<SpriteRenderer>().sprite;
+                
+            /*case Throwable.ThrowableType.Decoy:
+                return Resources.Load<GameObject>("Decoy_Throwable").GetComponent<SpriteRenderer>().sprite;
+
+            case Throwable.ThrowableType.Flashbang:
+                return Resources.Load<GameObject>("Flashbang_Throwable").GetComponent<SpriteRenderer>().sprite;
+                */
+            default: 
+                return null;
+        }
+    }
+    #endregion
 }

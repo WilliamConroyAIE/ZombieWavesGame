@@ -233,6 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActiveWeapon: 0
+  isInHands: 1
   animator: {fileID: 4787629341756711}
   bulletPrefab: {fileID: 5897092442045150004, guid: a2262ca845b88944490e85bc15eeb1c8, type: 3}
   bulletSpawn: {fileID: 5647065954244706133}
@@ -253,7 +254,6 @@ MonoBehaviour:
   magazineSize: 30
   bulletsLeft: 0
   isReloading: 0
-  playerCamera: {fileID: 0}
   spawnPosition: {x: 0.2857742, y: -0.2299999, z: 0.634971}
   spawnRotation: {x: 0, y: -1.5, z: 0}
   ADSPosition: {x: 0.032, y: -0.072, z: 0.424}
