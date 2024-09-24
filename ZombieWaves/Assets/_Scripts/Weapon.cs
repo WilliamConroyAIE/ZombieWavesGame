@@ -11,6 +11,8 @@ public class Weapon : MonoBehaviour
     public bool isActiveWeapon;
     public Animator animator;
 
+    public int weaponDamage;
+
     [Header("Shooting")]
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
@@ -64,6 +66,11 @@ public class Weapon : MonoBehaviour
     {
         if (isActiveWeapon)
         {
+            foreach (Transform child in transform)
+            {
+                child.gameObject.layer = LayerMask.NameToLayer("WeaponRender");
+            }
+
             GetComponent<Outline>().enabled = false;
 
             if (Input.GetMouseButton(1))
@@ -103,6 +110,13 @@ public class Weapon : MonoBehaviour
                 Reload();
             }
         }
+        else
+        {
+            foreach (Transform child in transform)
+            {
+                child.gameObject.layer = LayerMask.NameToLayer("Default");
+            }
+        }
     }
 
     private void FireWeapon()
@@ -115,6 +129,8 @@ public class Weapon : MonoBehaviour
         Vector3 shootingDirection = CalculateDirectionAndSpread().normalized;
         SoundManager.Instance.PlayShootingSound(thisWeaponModel);
         GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
+        Bullet bul = bullet.GetComponent<Bullet>();
+        bul.bulletDamage = weaponDamage;
         bullet.transform.forward = shootingDirection;
         bullet.GetComponent<Rigidbody>().AddForce(bulletSpawn.forward.normalized * bulletVelocity / 4, ForceMode.Impulse);
         StartCoroutine(DestroyBulletAfterTime(bullet, bulletPrefabLifeTime));
