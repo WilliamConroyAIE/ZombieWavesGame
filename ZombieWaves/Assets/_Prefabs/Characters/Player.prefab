@@ -111,6 +111,7 @@ MonoBehaviour:
   spawnRotation: {x: 0, y: -1.5, z: 0}
   ADSPosition: {x: 0, y: -0.07, z: 0.75}
   ADSRotation: {x: 0, y: 0, z: 0}
+  lerpSpeed: 15
 --- !u!114 &7997095352436057026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5466,6 +5467,7 @@ MonoBehaviour:
   spawnRotation: {x: 0, y: -1.5, z: 0}
   ADSPosition: {x: 0.032, y: -0.072, z: 0.424}
   ADSRotation: {x: 0, y: 0, z: 23.723}
+  lerpSpeed: 15
 --- !u!95 &2986823648423130718
 Animator:
   serializedVersion: 5
@@ -5950,7 +5952,7 @@ GameObject:
   - component: {fileID: 7438889449283988820}
   m_Layer: 3
   m_Name: MainCamera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6002,7 +6004,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 8255
+    m_Bits: 41023
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

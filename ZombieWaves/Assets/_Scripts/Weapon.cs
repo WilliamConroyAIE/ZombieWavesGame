@@ -205,13 +205,15 @@ public class Weapon : MonoBehaviour
         allowReset = true;
     }
 
+    public float lerpSpeed;
+
     private void enterADS()
     {
         animator.SetBool("isADS", true);
         isADS = false;
         HUDManager.Instance.crosshair.SetActive(false);
         spreadIntensity = adsSpreadIntensity;
-        Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 40.0f, 3.5f * Time.deltaTime);
+        Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 40.0f, lerpSpeed * Time.deltaTime);
     }
 
     private void exitADS()
@@ -220,7 +222,7 @@ public class Weapon : MonoBehaviour
         isADS = false;
         HUDManager.Instance.crosshair.SetActive(true);
         spreadIntensity = hipSpreadIntensity;
-        Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 60.0f, 3.5f * Time.deltaTime);
+        Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 60.0f, lerpSpeed * Time.deltaTime);
     }
 
 }
