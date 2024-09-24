@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -45,16 +45,16 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) && isGrounded)
-        {
-            nextFootstep -= Time.deltaTime;
-            if (nextFootstep <= 0) 
+         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) && isGrounded)
             {
-                GetComponent<AudioSource>().PlayOneShot(footStepSound, 0.7f);
-                nextFootstep += footStepDelay;
-            }
-        }
-    }
+             nextFootstep -= Time.deltaTime;
+             if (nextFootstep <= 0) 
+                {
+                 GetComponent<AudioSource>().PlayOneShot(footStepSound, 0.7f);
+                 nextFootstep += footStepDelay;
+                }
+             }
+         }
 }
 
 

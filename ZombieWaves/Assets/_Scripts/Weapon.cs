@@ -10,7 +10,6 @@ public class Weapon : MonoBehaviour
 {
     public bool isActiveWeapon;
     public Animator animator;
-
     public int weaponDamage;
 
     [Header("Shooting")]
@@ -68,7 +67,7 @@ public class Weapon : MonoBehaviour
         {
             foreach (Transform child in transform)
             {
-                child.gameObject.layer = LayerMask.NameToLayer("WeaponRender");
+                child.gameObject.layer = LayerMask.NameToLayer("Weapon");
             }
 
             GetComponent<Outline>().enabled = false;
@@ -222,7 +221,6 @@ public class Weapon : MonoBehaviour
         HUDManager.Instance.crosshair.SetActive(true);
         spreadIntensity = hipSpreadIntensity;
         Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 60.0f, 3.5f * Time.deltaTime);
-
     }
 
 }

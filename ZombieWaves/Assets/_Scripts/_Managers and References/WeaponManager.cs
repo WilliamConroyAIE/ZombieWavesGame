@@ -120,7 +120,6 @@ public class WeaponManager : MonoBehaviour
             forceMultiplier = 0;
         }
     }
-
     public void SwitchActiveSlot(int slotNumber)
     {
         if (activeWeaponSlot.transform.childCount > 0)

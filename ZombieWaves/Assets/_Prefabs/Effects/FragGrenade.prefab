@@ -4768,7 +4768,7 @@ GameObject:
   - component: {fileID: 4102012850777598605}
   - component: {fileID: 4075991268258344683}
   m_Layer: 0
-  m_Name: SmallExplosionEffect
+  m_Name: FragGrenade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
