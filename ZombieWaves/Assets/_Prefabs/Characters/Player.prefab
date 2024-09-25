@@ -87,7 +87,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActiveWeapon: 0
   animator: {fileID: 3524178278823567098}
-  weaponDamage: 0
+  weaponDamage: 50
   bulletPrefab: {fileID: 5897092442045150004, guid: a2262ca845b88944490e85bc15eeb1c8, type: 3}
   bulletSpawn: {fileID: 4939833242037581332}
   bulletVelocity: 30
@@ -5443,7 +5443,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActiveWeapon: 0
   animator: {fileID: 2986823648423130718}
-  weaponDamage: 0
+  weaponDamage: 33
   bulletPrefab: {fileID: 5897092442045150004, guid: a2262ca845b88944490e85bc15eeb1c8, type: 3}
   bulletSpawn: {fileID: 7438889450042639404}
   bulletVelocity: 300
@@ -6222,6 +6222,7 @@ GameObject:
   - component: {fileID: 7438889450843213018}
   - component: {fileID: 7438889450843213012}
   - component: {fileID: 7438889450843213013}
+  - component: {fileID: 659515232}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -6384,6 +6385,20 @@ MonoBehaviour:
     m_Bits: 8192
   footStepSound: {fileID: 8300000, guid: 263f8aaa01d5d0041b082b7b69d9ca02, type: 3}
   footStepDelay: 0
+--- !u!114 &659515232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7438889450843213016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: affd7113b366a9b42bf731e98c1a075d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 100
+  bloodyScreen: {fileID: 0}
 --- !u!1 &7438889450880957603
 GameObject:
   m_ObjectHideFlags: 0

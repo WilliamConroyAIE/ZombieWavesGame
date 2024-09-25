@@ -5,13 +5,29 @@ using static Weapon;
 
 public class SoundManager : MonoBehaviour
 {
+    #region Singleton
     public static SoundManager Instance { get; set; }
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+    #endregion
 
+    #region Variables
+    [Header("AudioSources")]
     public AudioSource shootingChannel;
     public AudioSource reloadingChannel;
     public AudioSource emptyChannel;
-
     public AudioSource throwablesChannel;
+    public AudioSource enemyChannel;
+    public AudioSource enemyChannel2;
 
     [Header("Silenced AudioClips")]
     public AudioClip shootingSoundSilencedAR;
@@ -30,20 +46,12 @@ public class SoundManager : MonoBehaviour
 
     [Header("MiscellaneousWeaponSoundClips")]
     public AudioClip reloadSoundClip;
-    public AudioClip emptySoundClip;
-    public AudioClip fragmentationGrenadeSoundClip;
+    public AudioClip emptySoundClip, fragmentationGrenadeSoundClip;
 
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Instance = this;
-        }
-    }
+    [Header("EnemySoundClips")]
+    public AudioClip enemyWalk;
+    public AudioClip enemyChase, enemyAttack, enemyHurt, enemyDeath;
+#endregion
 
     public void PlayShootingSound(WeaponModel weapon)
     {

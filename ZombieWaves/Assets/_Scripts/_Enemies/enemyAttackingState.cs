@@ -20,6 +20,11 @@ public class enemyAttackingState : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+       if (SoundManager.Instance.enemyChannel.isPlaying == false)
+      {
+         SoundManager.Instance.enemyChannel.PlayOneShot(SoundManager.Instance.enemyAttack);
+      }
+       
        LookAtPlayer();
 
        float distanceFromPlayer = Vector3.Distance(player.position, animator.transform.position);
@@ -28,6 +33,8 @@ public class enemyAttackingState : StateMachineBehaviour
        {
             animator.SetBool("isAttacking", false);
        }
+
+        Distance(distanceFromPlayer);
     }
 
     private void LookAtPlayer()
@@ -39,4 +46,15 @@ public class enemyAttackingState : StateMachineBehaviour
         agent.transform.rotation = Quaternion.Euler(0, yRotation, 0);
     }
 
+
+    public float currentDistanceFromPlayer;
+    private void Distance(float distance)
+    {
+        currentDistanceFromPlayer = distance;
+    }
+
+    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        SoundManager.Instance.enemyChannel.Stop();
+    }
 }

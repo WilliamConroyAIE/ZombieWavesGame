@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using static SoundManager;
 
 public class Enemy : MonoBehaviour
 {
@@ -11,41 +12,30 @@ public class Enemy : MonoBehaviour
     private float deathDelay;
     private NavMeshAgent navAgent;
 
+    public bool isDead;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
         navAgent = GetComponent<NavMeshAgent>();
+        isDead = false;
     }
 
     public void TakeDamage(int damageAmount)
     {
         HP -= damageAmount;
 
-        if (HP <= 0)
+        if (HP <= 0 && !isDead)
         {
             animator.SetTrigger("DIE");
-            Invoke("DeathRemover", deathDelay);
+            isDead = true;
+
+            SoundManager.Instance.enemyChannel2.PlayOneShot(SoundManager.Instance.enemyDeath);
         }
         else
         {
             animator.SetTrigger("DAMAGE");
-        }
-    }
-
-    private void DeathRemover()
-    {
-        Destroy(gameObject);
-    }
-
-    private void Update()
-    {
-        if (navAgent.velocity.magnitude > 0.1f)
-        {
-            animator.SetBool("isWalking", true);
-        }
-        else
-        {
-            animator.SetBool("isWalking", false);
+            SoundManager.Instance.enemyChannel2.PlayOneShot(SoundManager.Instance.enemyHurt);
         }
     }
 

@@ -16,11 +16,24 @@ public class Bullet : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<Enemy>().TakeDamage(bulletDamage);
+            if (collision.gameObject.GetComponent<Enemy>().isDead == false)
+            {
+                collision.gameObject.GetComponent<Enemy>().TakeDamage(bulletDamage);
+            }
             CreateHitEffect(collision);
             Destroy(gameObject);
         }
 
+        if (collision.gameObject.CompareTag("EnemyHead"))
+        {
+            if (collision.gameObject.GetComponent<Enemy>().isDead == false)
+            {
+                collision.gameObject.GetComponentInParent<Enemy>().TakeDamage(bulletDamage * 2);
+            }
+            CreateHitEffect(collision);
+            Destroy(gameObject);
+        }
+        
     }
 
     void CreateBulletImpactEffect(Collision objectWeHit)
@@ -33,7 +46,7 @@ public class Bullet : MonoBehaviour
     void CreateHitEffect(Collision objectWeHit)
     {
         ContactPoint contact = objectWeHit.contacts[0];
-        GameObject hole = Instantiate(GlobalReference.Instance.hitEffectPrefab, contact.point, Quaternion.LookRotation(contact.normal));
-        hole.transform.SetParent(objectWeHit.gameObject.transform);
+        GameObject effect = Instantiate(GlobalReference.Instance.hitEffectPrefab, contact.point, Quaternion.LookRotation(contact.normal));
+        effect.transform.SetParent(objectWeHit.gameObject.transform);
     }
 }

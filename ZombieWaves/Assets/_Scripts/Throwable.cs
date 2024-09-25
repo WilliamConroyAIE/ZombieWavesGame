@@ -106,9 +106,11 @@ public class Throwable : MonoBehaviour
 
             if (objectInRange.gameObject.GetComponent<Enemy>())
             {
-                objectInRange.gameObject.GetComponent<Enemy>().TakeDamage(100);
+                objectInRange.gameObject.GetComponent<Enemy>().TakeDamage(50);
             }
         }
+
+        Destroy(explosionEffect);
     }
 
     /*
@@ -157,6 +159,8 @@ public class Throwable : MonoBehaviour
         Instantiate(explosionEffect, transform.position, transform.rotation);
 
         SoundManager.Instance.throwablesChannel.PlayOneShot(SoundManager.Instance.fragmentationGrenadeSoundClip);
+
+        Destroy(explosionEffect);
     }
 
     /*

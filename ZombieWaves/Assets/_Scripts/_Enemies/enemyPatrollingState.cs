@@ -36,6 +36,12 @@ public class enemyPatrollingState : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+      if (SoundManager.Instance.enemyChannel.isPlaying == false)
+      {
+         SoundManager.Instance.enemyChannel.clip = SoundManager.Instance.enemyWalk;
+         SoundManager.Instance.enemyChannel.PlayDelayed(1f);
+      }
+
        if (agent.remainingDistance <= agent.stoppingDistance)
        {
             agent.SetDestination(waypointsList[Random.Range(0, waypointsList.Count)].position);
@@ -58,6 +64,7 @@ public class enemyPatrollingState : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
        agent.SetDestination(agent.transform.position);
+       SoundManager.Instance.enemyChannel.Stop();
     }
 
 }
