@@ -28,6 +28,7 @@ public class SoundManager : MonoBehaviour
     public AudioSource throwablesChannel;
     public AudioSource enemyChannel;
     public AudioSource enemyChannel2;
+    public AudioSource playerChannel;
 
     [Header("Silenced AudioClips")]
     public AudioClip shootingSoundSilencedAR;
@@ -51,6 +52,11 @@ public class SoundManager : MonoBehaviour
     [Header("EnemySoundClips")]
     public AudioClip enemyWalk;
     public AudioClip enemyChase, enemyAttack, enemyHurt, enemyDeath;
+
+    [Header("PlayerSoundClips")]
+    public AudioClip playerHurtClip;
+    public AudioClip playerDeathClip, gameOverClip;
+
 #endregion
 
     public void PlayShootingSound(WeaponModel weapon)

@@ -99,7 +99,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3367899147354770755}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -980,6 +980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 100
+  enemyHand: {fileID: 3811350559108784700}
   isDead: 0
 --- !u!195 &8859393421551657310
 NavMeshAgent:
@@ -1030,6 +1031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zombieHand: {fileID: 440552226}
+  zombieHandGO: {fileID: 440552223}
   enemy: {fileID: 8859393421551657311}
   zombieDamage: 25
 --- !u!1 &8859393421551691368

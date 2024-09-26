@@ -8,10 +8,21 @@ public class Player : MonoBehaviour
 {
     public int HP = 100;
     public GameObject bloodyScreen;
+    public TextMeshProUGUI playerHealthUI;
+    public GameObject gameOverUI;
+    public GameObject standardCanvas;
+    public bool isDead = false;
 
     private void Start()
     {
         bloodyScreen.SetActive(false);
+        standardCanvas.SetActive(true);
+        Camera.main.GetComponentInChildren<Animator>().enabled = false;
+    }
+
+    private void Update()
+    {
+        playerHealthUI.text = $"Health: {HP}";
     }
 
     public void TakeDamage(int damageAmount)
@@ -27,6 +38,8 @@ public class Player : MonoBehaviour
         {
             print("Player Hit");
             StartCoroutine(BloodyScreenEffect());
+            playerHealthUI.text = $"Health: {HP}";
+            SoundManager.Instance.playerChannel.PlayOneShot(SoundManager.Instance.playerHurtClip);
         }
     }
 
@@ -70,15 +83,28 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("EnemyHand"))
         {
-            TakeDamage(other.GetComponent<ZombieHand>().damage);
+            if (!isDead)
+                TakeDamage(other.GetComponent<ZombieHand>().damage);
         }
     }
 
     private void PlayerDead()
     {
-        Camera.main.GetComponent<MouseMovement>().enabled = false;
+        Camera.main.GetComponent<MouseLook>().enabled = false;
         GetComponent<PlayerMovement>().enabled = false;
 
-        Camera.main.GetComponent<Animator>().enabled = true;
+        Camera.main.GetComponentInChildren<Animator>().enabled = true;
+        GetComponent<ScreenFader>().StartFade();
+
+        StartCoroutine(ShowGameOverUI());
+        standardCanvas.gameObject.SetActive(false);
+
+        SoundManager.Instance.playerChannel.PlayOneShot(SoundManager.Instance.playerDeathClip);
+    }
+
+    private IEnumerator ShowGameOverUI()
+    {
+        yield return new WaitForSeconds(1f);
+        gameOverUI.gameObject.SetActive(true);
     }
 }

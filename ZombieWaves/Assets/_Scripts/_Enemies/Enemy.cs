@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     private Animator animator;
     private float deathDelay;
     private NavMeshAgent navAgent;
+    public BoxCollider enemyHand;
 
     public bool isDead;
 
@@ -19,6 +20,7 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
         navAgent = GetComponent<NavMeshAgent>();
         isDead = false;
+        enemyHand = GetComponent<BoxCollider>();
     }
 
     public void TakeDamage(int damageAmount)
@@ -27,10 +29,13 @@ public class Enemy : MonoBehaviour
 
         if (HP <= 0 && !isDead)
         {
-            animator.SetTrigger("DIE");
+            animator.SetBool("isDEAD", true);
+            //Ragdoll Death Animation
             isDead = true;
 
             SoundManager.Instance.enemyChannel2.PlayOneShot(SoundManager.Instance.enemyDeath);
+
+            enemyHand.enabled = false;
         }
         else
         {
