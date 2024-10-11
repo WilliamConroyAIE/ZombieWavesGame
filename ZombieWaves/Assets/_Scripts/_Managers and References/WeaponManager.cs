@@ -16,21 +16,23 @@ public class WeaponManager : MonoBehaviour
     [Header("Throwables")]
     public float throwForce = 40f;
     public GameObject throwableSpawn;
-    public float forceMultiplier = 0;
-    public float forceMultiplierLimit = 2f;
+    public float forceMultiplier = 0, timeMultiplier = 0;
+    public float forceMultiplierLimit = 2f, timeMultiplierLimit = 5f;
+    public bool throwableCooldownDone;
+    public float throwableCooldown;
 
     [Header("Lethals")]
     public int maxLethals = 3;
     public int lethalsCount = 0;
     public Throwable.ThrowableType equippedLethalType;
-    public GameObject fGrenadePrefab/*, mCocktailPrefab, pBombPrefab*/;
+    public GameObject fGrenadePrefab, mCocktailPrefab, pBombPrefab;
 
     
     [Header("Tacticals")]
     public int maxTacticals = 3;
     public int tacticalsCount = 0;
     public Throwable.ThrowableType equippedTacticalType;
-    public GameObject sGrenadePrefab/*, decoyPrefab, fBangPrefab*/;
+    public GameObject sGrenadePrefab, decoyPrefab, fBangPrefab;
     
 
     private void Awake()
@@ -53,6 +55,10 @@ public class WeaponManager : MonoBehaviour
 
         equippedLethalType = Throwable.ThrowableType.None;
         equippedTacticalType = Throwable.ThrowableType.None;
+
+        throwableCooldown = 0f;
+
+        throwableCooldownDone = true;
     }
 
     private void Update()
@@ -81,11 +87,25 @@ public class WeaponManager : MonoBehaviour
         //LethalThrow
         if (Input.GetMouseButton(2) || Input.GetKey(KeyCode.G))
         {
-            forceMultiplier += Time.deltaTime;
-
-            if (forceMultiplier > forceMultiplierLimit)
+            if (throwableCooldownDone)
             {
-                forceMultiplier = forceMultiplierLimit;
+                forceMultiplier += Time.deltaTime;
+
+                if (forceMultiplier > forceMultiplierLimit)
+                {
+                    forceMultiplier = forceMultiplierLimit;
+                    timeMultiplier += Time.deltaTime;
+                }
+                if (timeMultiplier > timeMultiplierLimit)
+                {
+                    timeMultiplier = timeMultiplierLimit;
+                }
+
+                if (forceMultiplier == forceMultiplierLimit && timeMultiplier == timeMultiplierLimit)
+                {
+                    ThrowLethal();
+                    timeMultiplier = 0;
+                }
             }
         }
 
@@ -93,7 +113,8 @@ public class WeaponManager : MonoBehaviour
         {
             if (lethalsCount > 0)
             {
-                ThrowLethal();
+                if (throwableCooldownDone)
+                    ThrowLethal();
             }
 
             forceMultiplier = 0;
@@ -102,11 +123,25 @@ public class WeaponManager : MonoBehaviour
         //ThrowTactical
         if (Input.GetKey(KeyCode.Alpha4))
         {
-            forceMultiplier += Time.deltaTime;
-
-            if (forceMultiplier > forceMultiplierLimit)
+            if (throwableCooldownDone)
             {
-                forceMultiplier = forceMultiplierLimit;
+                forceMultiplier += Time.deltaTime;
+
+                if (forceMultiplier > forceMultiplierLimit)
+                {
+                    forceMultiplier = forceMultiplierLimit;
+                    timeMultiplier += Time.deltaTime;
+                }
+                if (timeMultiplier > timeMultiplierLimit)
+                {
+                    timeMultiplier = timeMultiplierLimit;
+                }
+
+                if (forceMultiplier == forceMultiplierLimit && timeMultiplier == timeMultiplierLimit)
+                {
+                    ThrowTactical();
+                    timeMultiplier = 0;
+                }
             }
         }
 
@@ -114,10 +149,25 @@ public class WeaponManager : MonoBehaviour
         {
             if (tacticalsCount > 0)
             {
-                ThrowTactical();
+                if (throwableCooldownDone)
+                    ThrowTactical();
             }
 
             forceMultiplier = 0;
+        }
+
+        if (throwableCooldown > 0.1f)
+        {
+            if (!throwableCooldownDone)
+            {
+                throwableCooldown -= Time.deltaTime;
+                
+                if (throwableCooldown < 0f)
+                {
+                    throwableCooldown = 0f;
+                    throwableCooldownDone = true;
+                }
+            }
         }
     }
     public void SwitchActiveSlot(int slotNumber)
@@ -200,9 +250,83 @@ public class WeaponManager : MonoBehaviour
             case Weapon.WeaponModel.M16A4:
                 totalPrimaryAmmunition -= bulletsToDecrease;
                 break;
+            //
+            case Weapon.WeaponModel.MicroUzi:
+                totalPrimaryAmmunition -= bulletsToDecrease;
+                break;
+            //
+            case Weapon.WeaponModel.M1Garand:
+                totalPrimaryAmmunition -= bulletsToDecrease;
+                break;
+            //
+            case Weapon.WeaponModel.MG42:
+                totalPrimaryAmmunition -= bulletsToDecrease;
+                break;
+            //
+            case Weapon.WeaponModel.SA80:
+                totalPrimaryAmmunition -= bulletsToDecrease;
+                break;
+            //
+            case Weapon.WeaponModel.Famas:
+                totalPrimaryAmmunition -= bulletsToDecrease;
+                break;
+            //
+            case Weapon.WeaponModel.MP5:
+                totalPrimaryAmmunition -= bulletsToDecrease;
+                break;
+            //
+            case Weapon.WeaponModel.MP40:
+                totalPrimaryAmmunition -= bulletsToDecrease;
+                break;
+            //
+            case Weapon.WeaponModel.AK47:
+                totalPrimaryAmmunition -= bulletsToDecrease;
+                break;
+            //
+            case Weapon.WeaponModel.AK74U:
+                totalPrimaryAmmunition -= bulletsToDecrease;
+                break;
+            //
+            case Weapon.WeaponModel.Dragunov:
+                totalPrimaryAmmunition -= bulletsToDecrease;
+                break;
+            //
+            case Weapon.WeaponModel.PPSH:
+                totalPrimaryAmmunition -= bulletsToDecrease;
+                break;
+            //
+            case Weapon.WeaponModel.Luger:
+                totalSecondaryAmmunition -= bulletsToDecrease;
+                break;
+            //
+            case Weapon.WeaponModel.DesertEagle:
+                totalSecondaryAmmunition -= bulletsToDecrease;
+                break;
+            //
+            case Weapon.WeaponModel.M9Beretta:
+                totalSecondaryAmmunition -= bulletsToDecrease;
+                break;
+            //
+            case Weapon.WeaponModel.Revolver:
+                totalSecondaryAmmunition -= bulletsToDecrease;
+                break;
+            //
+            case Weapon.WeaponModel.Glock17:
+                totalSecondaryAmmunition -= bulletsToDecrease;
+                break;
+            //
+            case Weapon.WeaponModel.Tokarev:
+                totalSecondaryAmmunition -= bulletsToDecrease;
+                break;
+            //
+            case Weapon.WeaponModel.Makarov:
+                totalSecondaryAmmunition -= bulletsToDecrease;
+                break;
+            //
             case Weapon.WeaponModel.M1911:
                 totalSecondaryAmmunition -= bulletsToDecrease;
                 break;
+            //
             default:
                 break;
         }
@@ -214,9 +338,64 @@ public class WeaponManager : MonoBehaviour
         {
             case Weapon.WeaponModel.M16A4:
                 return totalPrimaryAmmunition;
+            //
+            case Weapon.WeaponModel.MicroUzi:
+                return totalPrimaryAmmunition;
+            //
+            case Weapon.WeaponModel.M1Garand:
+                return totalPrimaryAmmunition;
+            //
+            case Weapon.WeaponModel.MG42:
+                return totalPrimaryAmmunition;
+            //
+            case Weapon.WeaponModel.SA80:
+                return totalPrimaryAmmunition;
+            //
+            case Weapon.WeaponModel.Famas:
+                return totalPrimaryAmmunition;
+            //
+            case Weapon.WeaponModel.MP5:
+                return totalPrimaryAmmunition;
+            //
+            case Weapon.WeaponModel.MP40:
+                return totalPrimaryAmmunition;
+            //
+            case Weapon.WeaponModel.AK47:
+                return totalPrimaryAmmunition;
+            //
+            case Weapon.WeaponModel.AK74U:
+                return totalPrimaryAmmunition;
+            //
+            case Weapon.WeaponModel.Dragunov:
+                return totalPrimaryAmmunition;
+            //
+            case Weapon.WeaponModel.PPSH:
+                return totalPrimaryAmmunition;
+            //
+            case Weapon.WeaponModel.Luger:
+                return totalSecondaryAmmunition;
+            //
+            case Weapon.WeaponModel.DesertEagle:
+                return totalSecondaryAmmunition;
+            //
+            case Weapon.WeaponModel.M9Beretta:
+                return totalSecondaryAmmunition;
+            //
+            case Weapon.WeaponModel.Revolver:
+                return totalSecondaryAmmunition;
+            //
+            case Weapon.WeaponModel.Glock17:
+                return totalSecondaryAmmunition;
+            //
+            case Weapon.WeaponModel.Tokarev:
+                return totalSecondaryAmmunition;
+            //
+            case Weapon.WeaponModel.Makarov:
+                return totalSecondaryAmmunition;
+            //
             case Weapon.WeaponModel.M1911:
                 return totalSecondaryAmmunition;
-
+            //
             default:
                 return 0;
         }
@@ -232,22 +411,21 @@ public class WeaponManager : MonoBehaviour
             case Throwable.ThrowableType.FragmentationGrenade:
                 PickupThrowableAsLethal(Throwable.ThrowableType.FragmentationGrenade);
                 break;
-                /*
             case Throwable.ThrowableType.Pipebomb:
-                PickupThrowableAsLethal(throwable.ThrowableType.Pipebomb);
+                PickupThrowableAsLethal(Throwable.ThrowableType.Pipebomb);
                 break;
             case Throwable.ThrowableType.MolotovCocktail:
-                PickupThrowableAsLethal(throwable.ThrowableType.MolotovCocktail);
+                PickupThrowableAsLethal(Throwable.ThrowableType.MolotovCocktail);
                 break;
             case Throwable.ThrowableType.Decoy:
                 PickupThrowableAsTactical(Throwable.ThrowableType.Decoy);
-                break; */
+                break; 
             case Throwable.ThrowableType.SmokeGrenade:
                 PickupThrowableAsTactical(Throwable.ThrowableType.SmokeGrenade);
                 break;
-            //case Throwable.ThrowableType.Flashbang:
-                //PickupThrowableAsTactical(Throwable.ThrowableType.Flashbang);
-                //break;
+            case Throwable.ThrowableType.Flashbang:
+                PickupThrowableAsTactical(Throwable.ThrowableType.Flashbang);
+                break;
             default:
                 break;
         }
@@ -274,22 +452,35 @@ public class WeaponManager : MonoBehaviour
 
     private void ThrowLethal()
     {
-        GameObject lethalPrefab = GetLethalThrowablePrefab();
-
-        GameObject throwable = Instantiate(lethalPrefab, throwableSpawn.transform.position, Camera.main.transform.rotation);
-        Rigidbody rb = throwable.GetComponent<Rigidbody>();
-
-        rb.AddForce(Camera.main.transform.forward * (throwForce * forceMultiplier), ForceMode.Impulse);
-
-        throwable.GetComponent<Throwable>().hasBeenThrown = true;
-        lethalsCount -= 1;
-
-        if (lethalsCount == 0)
+        if (throwableCooldownDone)
         {
-            equippedLethalType = Throwable.ThrowableType.None;
-        }
+            GameObject lethalPrefab = GetLethalThrowablePrefab();
 
-        HUDManager.Instance.UpdateLethalThrowables(equippedLethalType);
+            GameObject throwable = Instantiate(lethalPrefab, throwableSpawn.transform.position, Camera.main.transform.rotation);
+
+            if (forceMultiplier == forceMultiplierLimit && timeMultiplier == timeMultiplierLimit)
+            {
+                throwable.GetComponent<Throwable>().playerHeldTooLong = true;
+            }
+
+            if (throwable.GetComponent<Throwable>().playerHeldTooLong == false)
+            {
+                Rigidbody rb = throwable.GetComponent<Rigidbody>();
+                rb.AddForce(Camera.main.transform.forward * (throwForce * forceMultiplier), ForceMode.Impulse);
+            }
+
+            throwable.GetComponent<Throwable>().hasBeenThrown = true;
+            lethalsCount -= 1;
+
+            if (lethalsCount == 0)
+            {
+                equippedLethalType = Throwable.ThrowableType.None;
+            }
+
+            HUDManager.Instance.UpdateLethalThrowables(equippedLethalType);
+
+            throwableCooldown = 1.5f;
+        }
     }
 
     internal GameObject GetLethalThrowablePrefab()
@@ -297,11 +488,11 @@ public class WeaponManager : MonoBehaviour
         switch (equippedLethalType)
         {
             case Throwable.ThrowableType.FragmentationGrenade:
-                return fGrenadePrefab;/*
+                return fGrenadePrefab;
             case Throwable.ThrowableType.Pipebomb:
                 return pBombPrefab;
             case Throwable.ThrowableType.MolotovCocktail:
-                return mCocktailPrefab;*/
+                return mCocktailPrefab;
         }
         return new();
     }
@@ -331,29 +522,48 @@ public class WeaponManager : MonoBehaviour
 
     private void ThrowTactical()
     {
-        GameObject tacticalPrefab = GetTacticalThrowablePrefab();
+        if (throwableCooldownDone)
+        {
+            GameObject tacticalPrefab = GetTacticalThrowablePrefab();
 
-        GameObject throwable = Instantiate(tacticalPrefab, throwableSpawn.transform.position, Camera.main.transform.rotation);
-        Rigidbody rb = throwable.GetComponent<Rigidbody>();
+            GameObject throwable1 = Instantiate(tacticalPrefab, throwableSpawn.transform.position, Camera.main.transform.rotation);
 
-        rb.AddForce(Camera.main.transform.forward * (throwForce * forceMultiplier), ForceMode.Impulse);
+            if (forceMultiplier == forceMultiplierLimit && timeMultiplier == timeMultiplierLimit)
+            {
+                throwable1.GetComponent<Throwable>().playerHeldTooLong = true;
+            }
+            
+            if (throwable1.GetComponent<Throwable>().playerHeldTooLong == false)
+            {
+                Rigidbody rb = throwable1.GetComponent<Rigidbody>();
+                rb.AddForce(Camera.main.transform.forward * (throwForce * forceMultiplier), ForceMode.Impulse);
+            }
 
-        throwable.GetComponent<Throwable>().hasBeenThrown = true;
+            throwable1.GetComponent<Throwable>().hasBeenThrown = true;
+            tacticalsCount -= 1;
 
-        tacticalsCount -= 1;
-        HUDManager.Instance.UpdateTacticalThrowables(equippedTacticalType);
+            if (tacticalsCount == 0)
+            {
+                equippedTacticalType = Throwable.ThrowableType.None;
+            }
+
+            HUDManager.Instance.UpdateTacticalThrowables(equippedTacticalType);
+
+            throwableCooldown = 1.5f;
+        }
     }
+
 
     internal GameObject GetTacticalThrowablePrefab()
     {
         switch (equippedTacticalType)
         {
+            case Throwable.ThrowableType.Flashbang:
+                return fBangPrefab;
             case Throwable.ThrowableType.SmokeGrenade:
                 return sGrenadePrefab;
-            /*case Throwable.ThrowableType.Decoy:
+            case Throwable.ThrowableType.Decoy:
                 return decoyPrefab;
-            case Throwable.ThrowableType.Flashbang:
-                return fBangPrefab;*/
         }
         return new();
     }

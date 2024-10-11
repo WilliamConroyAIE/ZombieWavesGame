@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     private Animator animator;
     private float deathDelay;
     private NavMeshAgent navAgent;
-    public BoxCollider enemyHand;
+    public GameObject enemyHand, AliveEnemyGO, EnemyRagdollGO;
 
     public bool isDead;
 
@@ -20,7 +20,8 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
         navAgent = GetComponent<NavMeshAgent>();
         isDead = false;
-        enemyHand = GetComponent<BoxCollider>();
+        AliveEnemyGO.SetActive(true);
+        EnemyRagdollGO.SetActive(false);
     }
 
     public void TakeDamage(int damageAmount)
@@ -29,13 +30,15 @@ public class Enemy : MonoBehaviour
 
         if (HP <= 0 && !isDead)
         {
-            animator.SetBool("isDEAD", true);
-            //Ragdoll Death Animation
+            //animator.SetBool("isDEAD", true);
             isDead = true;
+
+            AliveEnemyGO.SetActive(false);
+            EnemyRagdollGO.SetActive(true);
 
             SoundManager.Instance.enemyChannel2.PlayOneShot(SoundManager.Instance.enemyDeath);
 
-            enemyHand.enabled = false;
+            enemyHand.SetActive(false);
         }
         else
         {
@@ -50,9 +53,9 @@ public class Enemy : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, 2.5f);
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, 18f);
+        Gizmos.DrawWireSphere(transform.position, 20f);
 
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, 21f);
+        Gizmos.DrawWireSphere(transform.position, 25f);
     }
 }

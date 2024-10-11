@@ -11,6 +11,7 @@ public class ScreenFader : MonoBehaviour
     public void Start()
     {
         fadeImage.enabled = false;
+        fadeImage.gameObject.SetActive(false);
     }
 
     public void Update()

@@ -7,6 +7,7 @@ public class enemyAttackingState : StateMachineBehaviour
 {
     Transform player;
     NavMeshAgent agent;
+    internal bool isCurrentlyAttacking;
 
     public float stopAttackingDistance = 2.5f;
 
@@ -31,7 +32,8 @@ public class enemyAttackingState : StateMachineBehaviour
 
        if (distanceFromPlayer > stopAttackingDistance)
        {
-            animator.SetBool("isAttacking", false);
+            isCurrentlyAttacking = true;
+            animator.SetBool("isAttacking", false);    
        }
 
         Distance(distanceFromPlayer);

@@ -7,8 +7,8 @@ public class Zombie : MonoBehaviour
     public ZombieHand zombieHand;
     public GameObject zombieHandGO;
     public Enemy enemy;
-
     public int zombieDamage;
+    public bool isDead = false;
 
     private void Start()
     {
@@ -20,7 +20,8 @@ public class Zombie : MonoBehaviour
         if (enemy.isDead == true)
         {
             zombieHand.damage = 0;
-            zombieHandGO.tag = default;
+            zombieHandGO.tag = "Enemy";
+            isDead = true;
         }
         else
             zombieHandGO.tag = "EnemyHand";

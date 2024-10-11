@@ -11,7 +11,7 @@ public class Throwable : MonoBehaviour
     float countdown;
 
     bool hasExploded = false;
-    public bool hasBeenThrown = false;
+    public bool hasBeenThrown = false, playerHeldTooLong = false;
 
     public bool isImpactThrowable;
 
@@ -19,11 +19,11 @@ public class Throwable : MonoBehaviour
     {
         None,
         FragmentationGrenade,
-        //Pipebomb,
-        //MolotovCocktail,
-        //Decoy,
-        SmokeGrenade
-        //Flashbang
+        Pipebomb,
+        MolotovCocktail,
+        Decoy,
+        SmokeGrenade,
+        Flashbang
     }
     public ThrowableType throwableType;
 
@@ -37,12 +37,8 @@ public class Throwable : MonoBehaviour
     {
         if (hasBeenThrown)
         {
-            if (isImpactThrowable) 
+            if (!isImpactThrowable) 
             {   
-                //Explode on Impact
-            }
-            else
-            {
                 countdown -= Time.deltaTime;
                 if (countdown <= 0f && !hasExploded)
                 {
@@ -50,6 +46,19 @@ public class Throwable : MonoBehaviour
                     hasExploded = true;
                 }
             }
+            if (isImpactThrowable)
+            {
+                OnColliderEnter();
+            }
+        }
+    }
+
+    private void OnColliderEnter()
+    {
+        if (isImpactThrowable)
+        {
+            Explode();
+            hasExploded = true;
         }
     }
 
@@ -67,20 +76,18 @@ public class Throwable : MonoBehaviour
             case ThrowableType.FragmentationGrenade:
                 GrenadeExplosionEffect();
                 break;
-            /*/case ThrowableType.Pipebomb:
+            case ThrowableType.Pipebomb:
                 PipebombEffect();
                 break;
             case ThrowableType.MolotovCocktail:
                 FireSpreadEffect();
                 break;
-            case ThrowableType.Decoy:
-                break; /*/
             case ThrowableType.SmokeGrenade:
                 SmokeBombEffect();
                 break;
-            //case ThrowableType.Flashbang:
-                //FlashBangEffect();
-                //break;
+            case ThrowableType.Flashbang:
+                FlashBangEffect();
+                break;
 
             default:
                 break;
@@ -106,14 +113,14 @@ public class Throwable : MonoBehaviour
 
             if (objectInRange.gameObject.GetComponent<Enemy>())
             {
-                objectInRange.gameObject.GetComponent<Enemy>().TakeDamage(50);
+                int dealable = Random.Range(20, 90);
+                objectInRange.gameObject.GetComponent<Enemy>().TakeDamage(dealable);
             }
         }
 
-        Destroy(explosionEffect);
     }
 
-    /*
+    
     private void PipebombEffect()
     {
         GameObject explosionEffect = GlobalReference.Instance.PBEffect;
@@ -128,6 +135,12 @@ public class Throwable : MonoBehaviour
             if (rb != null)
             {
                 rb.AddExplosionForce(explosionForce, transform.position, damageRadius);
+            }
+
+            if (objectInRange.gameObject.GetComponent<Enemy>())
+            {
+                int dealable1 = Random.Range(20, 90);
+                objectInRange.gameObject.GetComponent<Enemy>().TakeDamage(dealable1);
             }
         }
     }
@@ -147,9 +160,15 @@ public class Throwable : MonoBehaviour
             {
                 rb.AddExplosionForce(explosionForce, transform.position, damageRadius);
             }
+
+            if (objectInRange.gameObject.GetComponent<Enemy>())
+            {
+                int dealableFire = Mathf.RoundToInt( 5 + (5 * Time.deltaTime));
+                objectInRange.gameObject.GetComponent<Enemy>().TakeDamage(dealableFire);
+            }
         }
     }
-    */
+    
 #endregion
 
 #region TacticalEffects
@@ -160,10 +179,9 @@ public class Throwable : MonoBehaviour
 
         SoundManager.Instance.throwablesChannel.PlayOneShot(SoundManager.Instance.fragmentationGrenadeSoundClip);
 
-        Destroy(explosionEffect);
     }
 
-    /*
+    
     private void FlashBangEffect()
     {
         GameObject explosionEffect = GlobalReference.Instance.BlindnessEffect;
@@ -171,6 +189,6 @@ public class Throwable : MonoBehaviour
 
         SoundManager.Instance.throwablesChannel.PlayOneShot(SoundManager.Instance.fragmentationGrenadeSoundClip);
     }
-    */
+    
 #endregion
 }

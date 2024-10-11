@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public int bulletDamage;
+    public int headshotDamage;
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Target"))
@@ -28,7 +29,8 @@ public class Bullet : MonoBehaviour
         {
             if (collision.gameObject.GetComponent<Enemy>().isDead == false)
             {
-                collision.gameObject.GetComponentInParent<Enemy>().TakeDamage(bulletDamage * 2);
+                headshotDamage = bulletDamage * 2;
+                collision.gameObject.GetComponentInParent<Enemy>().TakeDamage(headshotDamage);
             }
             CreateHitEffect(collision);
             Destroy(gameObject);

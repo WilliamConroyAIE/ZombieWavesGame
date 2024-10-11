@@ -12,7 +12,10 @@ public class GlobalReference : MonoBehaviour
 
     [Header("ThrowableEffects")]
     public GameObject grenadeExplosionEffect;
-    public GameObject /*pipebombEffect, molotovCocktailEffect,*/ SmokeExplosionEffect/*, flashBangEffect*/;
+    public GameObject PBEffect, MCEffect, SmokeExplosionEffect, BlindnessEffect;
+
+
+    public int waveNumber;
 
     private void Awake()
     {

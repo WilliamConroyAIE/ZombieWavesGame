@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -12,12 +13,16 @@ public class Player : MonoBehaviour
     public GameObject gameOverUI;
     public GameObject standardCanvas;
     public bool isDead = false;
+    public Camera playerCamera;
+
+    public Button ToMainMenuButton;
 
     private void Start()
     {
         bloodyScreen.SetActive(false);
         standardCanvas.SetActive(true);
-        Camera.main.GetComponentInChildren<Animator>().enabled = false;
+        playerCamera.GetComponent<Animator>().enabled = false;
+        ToMainMenuButton.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -32,7 +37,7 @@ public class Player : MonoBehaviour
         if (HP <= 0)
         {
             print("Player Dead");
-            PlayerDead();
+            Invoke("PlayerDead", 0f);
         }
         else
         {
@@ -84,16 +89,20 @@ public class Player : MonoBehaviour
         if (other.CompareTag("EnemyHand"))
         {
             if (!isDead)
+            {
                 TakeDamage(other.GetComponent<ZombieHand>().damage);
+            }
         }
     }
 
     private void PlayerDead()
     {
-        Camera.main.GetComponent<MouseLook>().enabled = false;
-        GetComponent<PlayerMovement>().enabled = false;
+        playerCamera.GetComponent<MouseLook>().enabled = false;
+        GetComponent<PlayerMovement1>().enabled = false;
 
-        Camera.main.GetComponentInChildren<Animator>().enabled = true;
+        playerCamera.GetComponent<Animator>().enabled = true;
+        playerCamera.GetComponentInChildren<WeaponSway>().enabled = false;
+
         GetComponent<ScreenFader>().StartFade();
 
         StartCoroutine(ShowGameOverUI());
@@ -106,5 +115,20 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         gameOverUI.gameObject.SetActive(true);
+
+        int waveSurvived = GlobalReference.Instance.waveNumber; 
+
+        if (waveSurvived - 1 > SaveLoadManager.Instance.LoadHighScore())
+        {
+            SaveLoadManager.Instance.SaveHighScore(waveSurvived - 1);
+        }
+
+        yield return new WaitForSeconds(5f);
+        ToMainMenuButton.gameObject.SetActive(true);
+    }
+
+    public void FromGameToMenu()
+    {
+        SceneManager.LoadScene(sceneName:"MainMenu");
     }
 }

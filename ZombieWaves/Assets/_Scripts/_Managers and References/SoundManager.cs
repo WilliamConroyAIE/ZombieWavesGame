@@ -45,6 +45,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip shootingSoundSMG;
     public AudioClip shootingSoundSniper;
 
+    #region NonGunAudio
     [Header("MiscellaneousWeaponSoundClips")]
     public AudioClip reloadSoundClip;
     public AudioClip emptySoundClip, fragmentationGrenadeSoundClip;
@@ -56,6 +57,7 @@ public class SoundManager : MonoBehaviour
     [Header("PlayerSoundClips")]
     public AudioClip playerHurtClip;
     public AudioClip playerDeathClip, gameOverClip;
+    #endregion
 
 #endregion
 
@@ -66,6 +68,79 @@ public class SoundManager : MonoBehaviour
             case WeaponModel.M16A4: 
                 shootingChannel.PlayOneShot(shootingSoundSilencedAR);
                 break;
+            //
+            case WeaponModel.MicroUzi: 
+                shootingChannel.PlayOneShot(shootingSoundSMG);
+                break;
+            //
+            case WeaponModel.M1Garand: 
+                shootingChannel.PlayOneShot(shootingSoundSniper);
+                break;
+            //
+            case WeaponModel.MG42: 
+                shootingChannel.PlayOneShot(shootingSoundAR);
+                break;
+            //
+            case WeaponModel.SA80: 
+                shootingChannel.PlayOneShot(shootingSoundSilencedAR);
+                break;
+            //
+            case WeaponModel.Famas: 
+                shootingChannel.PlayOneShot(shootingSoundSilencedSMG);
+                break;
+            //
+            case WeaponModel.MP5: 
+                shootingChannel.PlayOneShot(shootingSoundSilencedSMG);
+                break;
+            //
+            case WeaponModel.MP40: 
+                shootingChannel.PlayOneShot(shootingSoundAR);
+                break;
+            //
+            case WeaponModel.AK47: 
+                shootingChannel.PlayOneShot(shootingSoundAR);
+                break;
+            //
+            case WeaponModel.AK74U: 
+                shootingChannel.PlayOneShot(shootingSoundSilencedSMG);
+                break;
+            //
+            case WeaponModel.Dragunov: 
+                shootingChannel.PlayOneShot(shootingSoundSniper);
+                break;
+            //
+            case WeaponModel.PPSH: 
+                shootingChannel.PlayOneShot(shootingSoundSMG);
+                break;
+            //
+            case WeaponModel.Luger: 
+                shootingChannel.PlayOneShot(shootingSoundNonGlockPistol);
+                break;
+            //
+            case WeaponModel.DesertEagle: 
+                shootingChannel.PlayOneShot(shootingSoundDeagle);
+                break;
+            //
+            case WeaponModel.M9Beretta: 
+                shootingChannel.PlayOneShot(shootingSoundGlockPistol);
+                break;
+            //
+            case WeaponModel.Revolver: 
+                shootingChannel.PlayOneShot(shootingSoundDeagle);
+                break;
+            //
+            case WeaponModel.Glock17: 
+                shootingChannel.PlayOneShot(shootingSoundGlockPistol);
+                break;
+            //
+            case WeaponModel.Tokarev: 
+                shootingChannel.PlayOneShot(shootingSoundNonGlockPistol);
+                break;
+            //
+            case WeaponModel.Makarov: 
+                shootingChannel.PlayOneShot(shootingSoundNonGlockPistol);
+                break;
+            //
             case WeaponModel.M1911: 
                 shootingChannel.PlayOneShot(shootingSoundNonGlockPistol);
                 break;
