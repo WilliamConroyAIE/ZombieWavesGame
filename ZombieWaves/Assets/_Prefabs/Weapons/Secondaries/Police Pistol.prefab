@@ -4890,7 +4890,7 @@ Animator:
   m_GameObject: {fileID: 8046213631739528348}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 85b63704185dbd74f9d7c7fb9e0d6924, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -4934,15 +4934,15 @@ MonoBehaviour:
   isActiveWeapon: 0
   animator: {fileID: 17973354625235220}
   weaponDamage: 50
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 5897092442045150004, guid: a2262ca845b88944490e85bc15eeb1c8, type: 3}
   bulletSpawn: {fileID: 5631123131568449934}
   bulletVelocity: 30
   bulletPrefabLifeTime: 3
   shootingDelay: 2
   lerpSpeed: 15
   spreadIntensity: 0
-  hipSpreadIntensity: 0
-  adsSpreadIntensity: 0
+  hipSpreadIntensity: 0.3
+  adsSpreadIntensity: 0.05
   isShooting: 0
   readyToShoot: 0
   bulletsPerBurst: 1
@@ -4950,13 +4950,13 @@ MonoBehaviour:
   muzzleFlash: {fileID: 8002836552562694311}
   currentShootingMode: 0
   thisWeaponModel: 16
-  reloadTime: 0
-  magazineSize: 0
+  reloadTime: 0.3
+  magazineSize: 17
   bulletsLeft: 0
   isReloading: 0
-  spawnPosition: {x: 0, y: 0, z: 0}
-  spawnRotation: {x: 0, y: 0, z: 0}
-  ADSPosition: {x: 0, y: 0, z: 0}
+  spawnPosition: {x: 0.284, y: -0.23, z: 0.635}
+  spawnRotation: {x: 0, y: -1.5, z: 0}
+  ADSPosition: {x: 0, y: -0.08, z: 0.635}
   ADSRotation: {x: 0, y: 0, z: 0}
   Vertical: {fileID: 1550515408962398930}
   Horizontal: {fileID: 1550515408962398930}
