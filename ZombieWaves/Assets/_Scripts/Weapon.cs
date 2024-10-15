@@ -97,7 +97,7 @@ public class Weapon : MonoBehaviour
        }
 
         animator.SetBool("isADS", false);
-        HUDManager.Instance.crosshair.SetActive(true);
+        HUDManager.Instance.crosshair.gameObject.SetActive(true);
         spreadIntensity = hipSpreadIntensity;
         Camera.main.GetComponent<MouseLook>().ChangeToHipSensitivity();
 
@@ -377,31 +377,6 @@ public class Weapon : MonoBehaviour
 
 
     #region ADS
-    /*private void AimDownSights()
-    {
-        if (Input.GetMouseButton(1) & !isReloading)
-        {
-            transform.localPosition = Vector3.Lerp(transform.localPosition, ADSPosition, Time.deltaTime * lerpSpeed);
-            transform.localRotation = Quaternion.Euler(0f, 1.5f, 0f);
-
-            HUDManager.Instance.crosshair.SetActive(false);
-            spreadIntensity = adsSpreadIntensity;
-            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 40.0f, lerpSpeed * Time.deltaTime);
-        }
-        else
-        {
-            transform.localPosition = Vector3.Lerp(transform.localPosition, spawnPosition, Time.deltaTime * lerpSpeed);
-            transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
-
-            HUDManager.Instance.crosshair.SetActive(true);
-            spreadIntensity = hipSpreadIntensity;
-            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 60.0f, lerpSpeed * Time.deltaTime);
-        }
-    }*/
-
-    
-    //Broken ADS
-    
     private void enterADS()
     {
         isADS = true;

@@ -318,6 +318,8 @@ public class HUDManager : MonoBehaviour
                 return "Dragunov:";
             case Weapon.WeaponModel.Luger:
                 return "Luger:";
+            case Weapon.WeaponModel.Glock17:
+                return "Glock 17:";
             case Weapon.WeaponModel.DesertEagle:
                 return "Desert Eagle:";
             case Weapon.WeaponModel.M9Beretta:
