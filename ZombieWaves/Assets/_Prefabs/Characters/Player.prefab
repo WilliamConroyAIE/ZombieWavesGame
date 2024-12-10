@@ -702,7 +702,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8873822264348451780}
+  - {fileID: 7842006728537641974}
   m_Father: {fileID: 5527459076757179726}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -734,7 +734,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5096817579074384399}
+  - {fileID: 5717728720220623626}
   m_Father: {fileID: 5527459076757179726}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1749,131 +1749,127 @@ MonoBehaviour:
   hoveredWeapon: {fileID: 0}
   hoveredAmmunitionBox: {fileID: 0}
   hoveredThrowable: {fileID: 0}
---- !u!1001 &5094730567165781743
+--- !u!1001 &6356654942510071860
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 5527459078165749870}
     m_Modifications:
-    - target: {fileID: 1932159584463208, guid: 8f43c5e24ea129e498a0c1d5e84f7d1e, type: 3}
+    - target: {fileID: 1685718441613598276, guid: c15dfb30b8faba54eb34b2f7de661497, type: 3}
       propertyPath: m_Name
-      value: American Light SMG
+      value: Police Pistol
       objectReference: {fileID: 0}
-    - target: {fileID: 4388016546927840, guid: 8f43c5e24ea129e498a0c1d5e84f7d1e, type: 3}
+    - target: {fileID: 1688335322825872190, guid: c15dfb30b8faba54eb34b2f7de661497, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4388016546927840, guid: 8f43c5e24ea129e498a0c1d5e84f7d1e, type: 3}
+    - target: {fileID: 1688335322825872190, guid: c15dfb30b8faba54eb34b2f7de661497, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.284
       objectReference: {fileID: 0}
-    - target: {fileID: 4388016546927840, guid: 8f43c5e24ea129e498a0c1d5e84f7d1e, type: 3}
+    - target: {fileID: 1688335322825872190, guid: c15dfb30b8faba54eb34b2f7de661497, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.23
       objectReference: {fileID: 0}
-    - target: {fileID: 4388016546927840, guid: 8f43c5e24ea129e498a0c1d5e84f7d1e, type: 3}
+    - target: {fileID: 1688335322825872190, guid: c15dfb30b8faba54eb34b2f7de661497, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.635
       objectReference: {fileID: 0}
-    - target: {fileID: 4388016546927840, guid: 8f43c5e24ea129e498a0c1d5e84f7d1e, type: 3}
+    - target: {fileID: 1688335322825872190, guid: c15dfb30b8faba54eb34b2f7de661497, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.99991435
       objectReference: {fileID: 0}
-    - target: {fileID: 4388016546927840, guid: 8f43c5e24ea129e498a0c1d5e84f7d1e, type: 3}
+    - target: {fileID: 1688335322825872190, guid: c15dfb30b8faba54eb34b2f7de661497, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4388016546927840, guid: 8f43c5e24ea129e498a0c1d5e84f7d1e, type: 3}
+    - target: {fileID: 1688335322825872190, guid: c15dfb30b8faba54eb34b2f7de661497, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.013089582
       objectReference: {fileID: 0}
-    - target: {fileID: 4388016546927840, guid: 8f43c5e24ea129e498a0c1d5e84f7d1e, type: 3}
+    - target: {fileID: 1688335322825872190, guid: c15dfb30b8faba54eb34b2f7de661497, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4388016546927840, guid: 8f43c5e24ea129e498a0c1d5e84f7d1e, type: 3}
+    - target: {fileID: 1688335322825872190, guid: c15dfb30b8faba54eb34b2f7de661497, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4388016546927840, guid: 8f43c5e24ea129e498a0c1d5e84f7d1e, type: 3}
+    - target: {fileID: 1688335322825872190, guid: c15dfb30b8faba54eb34b2f7de661497, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -1.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4388016546927840, guid: 8f43c5e24ea129e498a0c1d5e84f7d1e, type: 3}
+    - target: {fileID: 1688335322825872190, guid: c15dfb30b8faba54eb34b2f7de661497, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8f43c5e24ea129e498a0c1d5e84f7d1e, type: 3}
---- !u!4 &5096817579074384399 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: c15dfb30b8faba54eb34b2f7de661497, type: 3}
+--- !u!4 &5717728720220623626 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4388016546927840, guid: 8f43c5e24ea129e498a0c1d5e84f7d1e, type: 3}
-  m_PrefabInstance: {fileID: 5094730567165781743}
+  m_CorrespondingSourceObject: {fileID: 1688335322825872190, guid: c15dfb30b8faba54eb34b2f7de661497, type: 3}
+  m_PrefabInstance: {fileID: 6356654942510071860}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &6219959345372044738
+--- !u!1001 &7879852967729034355
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 5527459078005330730}
     m_Modifications:
-    - target: {fileID: 2551868364873996379, guid: 783309d5618c9b54aa636e1bbbe75689, type: 3}
-      propertyPath: wrCam
-      value: 
-      objectReference: {fileID: 5527459076338430685}
-    - target: {fileID: 3276256873337372166, guid: 783309d5618c9b54aa636e1bbbe75689, type: 3}
+    - target: {fileID: 109691182398993947, guid: 1848d6958a93da54088821ea56e57145, type: 3}
+      propertyPath: m_Name
+      value: British AssaultRifle
+      objectReference: {fileID: 0}
+    - target: {fileID: 112232737376462725, guid: 1848d6958a93da54088821ea56e57145, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3276256873337372166, guid: 783309d5618c9b54aa636e1bbbe75689, type: 3}
+    - target: {fileID: 112232737376462725, guid: 1848d6958a93da54088821ea56e57145, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.28575
       objectReference: {fileID: 0}
-    - target: {fileID: 3276256873337372166, guid: 783309d5618c9b54aa636e1bbbe75689, type: 3}
+    - target: {fileID: 112232737376462725, guid: 1848d6958a93da54088821ea56e57145, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.065
+      value: -0.235
       objectReference: {fileID: 0}
-    - target: {fileID: 3276256873337372166, guid: 783309d5618c9b54aa636e1bbbe75689, type: 3}
+    - target: {fileID: 112232737376462725, guid: 1848d6958a93da54088821ea56e57145, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.4125
+      value: 0.45
       objectReference: {fileID: 0}
-    - target: {fileID: 3276256873337372166, guid: 783309d5618c9b54aa636e1bbbe75689, type: 3}
+    - target: {fileID: 112232737376462725, guid: 1848d6958a93da54088821ea56e57145, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.99991435
       objectReference: {fileID: 0}
-    - target: {fileID: 3276256873337372166, guid: 783309d5618c9b54aa636e1bbbe75689, type: 3}
+    - target: {fileID: 112232737376462725, guid: 1848d6958a93da54088821ea56e57145, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3276256873337372166, guid: 783309d5618c9b54aa636e1bbbe75689, type: 3}
+    - target: {fileID: 112232737376462725, guid: 1848d6958a93da54088821ea56e57145, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.013089582
       objectReference: {fileID: 0}
-    - target: {fileID: 3276256873337372166, guid: 783309d5618c9b54aa636e1bbbe75689, type: 3}
+    - target: {fileID: 112232737376462725, guid: 1848d6958a93da54088821ea56e57145, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3276256873337372166, guid: 783309d5618c9b54aa636e1bbbe75689, type: 3}
+    - target: {fileID: 112232737376462725, guid: 1848d6958a93da54088821ea56e57145, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3276256873337372166, guid: 783309d5618c9b54aa636e1bbbe75689, type: 3}
+    - target: {fileID: 112232737376462725, guid: 1848d6958a93da54088821ea56e57145, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -1.5
       objectReference: {fileID: 0}
-    - target: {fileID: 3276256873337372166, guid: 783309d5618c9b54aa636e1bbbe75689, type: 3}
+    - target: {fileID: 112232737376462725, guid: 1848d6958a93da54088821ea56e57145, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3278527496903752064, guid: 783309d5618c9b54aa636e1bbbe75689, type: 3}
-      propertyPath: m_Name
-      value: American Old Rifle
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 783309d5618c9b54aa636e1bbbe75689, type: 3}
---- !u!4 &8873822264348451780 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: 1848d6958a93da54088821ea56e57145, type: 3}
+--- !u!4 &7842006728537641974 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 3276256873337372166, guid: 783309d5618c9b54aa636e1bbbe75689, type: 3}
-  m_PrefabInstance: {fileID: 6219959345372044738}
+  m_CorrespondingSourceObject: {fileID: 112232737376462725, guid: 1848d6958a93da54088821ea56e57145, type: 3}
+  m_PrefabInstance: {fileID: 7879852967729034355}
   m_PrefabAsset: {fileID: 0}

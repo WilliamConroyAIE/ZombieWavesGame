@@ -116,9 +116,6 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: Fire
     m_EventTreshold: 0
-  - m_ConditionMode: 1
-    m_ConditionEvent: isADS
-    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6419964456827767571}
   m_Solo: 0
@@ -476,10 +473,10 @@ AnimatorStateMachine:
     m_Position: {x: 250, y: 230, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6286409674633931171}
-    m_Position: {x: 240, y: -130, z: 0}
+    m_Position: {x: 260, y: -130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6419964456827767571}
-    m_Position: {x: 440, y: -130, z: 0}
+    m_Position: {x: 430, y: -130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2616223651337488510}
     m_Position: {x: 50, y: 30, z: 0}
@@ -561,9 +558,6 @@ AnimatorStateTransition:
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: Recoil
-    m_EventTreshold: 0
-  - m_ConditionMode: 1
-    m_ConditionEvent: isADS
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6286409674633931171}

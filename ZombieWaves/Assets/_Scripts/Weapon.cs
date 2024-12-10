@@ -75,6 +75,7 @@ public class Weapon : MonoBehaviour
     public bool Switchable;
     public bool BurstAllowed;
 
+    public GameObject playerGO;
     public Camera wrCam;
     public Camera srCam = null;
     public bool isScoped;
@@ -97,7 +98,15 @@ public class Weapon : MonoBehaviour
        }
 
         animator.SetBool("isADS", false);
-        HUDManager.Instance.crosshair.gameObject.SetActive(true);
+
+        playerGO = GameObject.Find("Player");
+
+        wrCam = Camera.main;
+        srCam = GetComponentInChildren<Camera>();
+
+        HUDManager hM = playerGO.GetComponentInChildren<HUDManager>();
+
+        hM.crosshair.gameObject.SetActive(true);
         spreadIntensity = hipSpreadIntensity;
         Camera.main.GetComponent<MouseLook>().ChangeToHipSensitivity();
 
@@ -115,6 +124,11 @@ public class Weapon : MonoBehaviour
 
             Vertical.SetActive(false);
             Horizontal.SetActive(false);
+        }
+
+        if (srCam == null)
+        {
+            srCam = wrCam;
         }
     }
 
@@ -238,7 +252,7 @@ public class Weapon : MonoBehaviour
             {
                 currentShootingMode = ShootingMode.Single;
             }
-            //
+            /*
             else
             {
                 currentShootingMode = currentShootingMode;
@@ -247,6 +261,7 @@ public class Weapon : MonoBehaviour
         else
         {
             currentShootingMode = currentShootingMode;
+        */
         }
         
         //AimDownSights();
