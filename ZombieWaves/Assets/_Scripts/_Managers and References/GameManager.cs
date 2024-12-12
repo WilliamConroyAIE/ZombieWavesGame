@@ -31,14 +31,25 @@ public class GameManager : MonoBehaviour
         controlsPP.SetActive(false);
         controlsSP.SetActive(false);
         pauseP.SetActive(false);        
+        Cursor.lockState = CursorLockMode.Confined;
+        paused = false;
     }
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape) && !paused)
+        {
+            paused = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && paused)
+        {
+            paused = false;
+        }
+        
         if (paused)
         {
             Time.timeScale = 0;
-            pauseP.SetActive(true);
+            BackToPauseVoid();
         }
         else
         {
@@ -47,29 +58,50 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void ControlsFPVoid()
+    public void ControlsFPVoid()
     {
         pauseP.SetActive(false);
         controlsPP.SetActive(true);
+        Cursor.lockState = CursorLockMode.Confined;
     }
-    void ControlsFSVoid()
+    public void ControlsFSVoid()
     {
         startP.SetActive(false);
         controlsSP.SetActive(true);
+        Cursor.lockState = CursorLockMode.Confined;
     }
-    void CreditsVoid()
+    public void CreditsVoid()
     {
         creditsP.SetActive(true);
         pauseP.SetActive(false);
+        Cursor.lockState = CursorLockMode.Confined;
     }
-    void StartVoid()
+    public void StartVoid()
     {
         controlsSP.SetActive(false);
         startP.SetActive(true);
+        pauseP.SetActive(false);
+        Cursor.lockState = CursorLockMode.Confined;
     }
-    void StartGameVoid()
+    public void StartGameVoid()
     {
         PlayerGO.SetActive(true);
         startP.SetActive(false);
+        pauseP.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
     } 
+
+    public void BackToPauseVoid()
+    {
+        creditsP.SetActive(false);
+        controlsPP.SetActive(false);
+        startP.SetActive(false);
+        pauseP.SetActive(true);
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+
+    public void QuitVoid()
+    {
+        Application.Quit();
+    }
 }
